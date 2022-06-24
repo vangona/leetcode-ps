@@ -13,7 +13,6 @@
 var addTwoNumbers = function(l1, l2) {
     let answerNode = new ListNode(0);
     let calculatedNum = 0;
-    let tenFlag = false;
     const answerHead = answerNode;
 
     while (l1 || l2) {
