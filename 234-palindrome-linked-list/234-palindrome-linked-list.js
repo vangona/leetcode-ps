@@ -10,18 +10,24 @@
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-    let currNode = head;
-    const list = [];
+    let tmp;
+    let fast = head;
+    let slow = head;
+    let reversedList = [];
+
     
-    while (currNode) {
-        list.push(currNode.val);
-        currNode = currNode.next;
+    while (fast && fast.next) {
+        fast = fast.next.next;
+        
+        reversedList.push(slow.val);
+        slow = slow.next;
     }
     
-    const N = list.length;
-    const reversedList = [...list].reverse();
-    for (let i = 0; i < N; i++) {
-        if (list[i] !== reversedList[i]) return false;
+    if (fast) slow = slow.next;
+    
+    while (slow) {
+        if (slow.val !== reversedList.pop()) return false;
+        slow = slow.next
     }
     
     return true;
