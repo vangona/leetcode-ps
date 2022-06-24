@@ -4,20 +4,14 @@
  * @return {boolean}
  */
 var canConstruct = function(ransomNote, magazine) {
-    const magazineObj = {};
-    magazine.split('').forEach(character => {
-        if (magazineObj[character]) {
-            magazineObj[character] += 1;
-        } else {
-            magazineObj[character] = 1;
-        }
-    });
-    
-    const ransomList = ransomNote.split('');
-    for (let i = 0; i < ransomList.length; i++) {
-        if (!magazineObj[ransomList[i]]) return false;
-        magazineObj[ransomList[i]]--;
+    const magazineList = new Array(26).fill(0);
+    for (let i = 0; i < magazine.length; i++) {
+        magazineList[magazine.charCodeAt(i) - 97]++;        
     }
     
+    for (let i = 0; i < ransomNote.length; i++) {
+        if (magazineList[ransomNote.charCodeAt(i) - 97] === 0) return false;
+        magazineList[ransomNote.charCodeAt(i) - 97]--;
+    }
     return true;
 };
