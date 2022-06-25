@@ -31,3 +31,7 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 	<li><code>s</code> consists of English letters, digits, symbols and spaces.</li>
 </ul>
 </div>
+
+### 풀이
+
+처음에는 N수가 커서 DP로 접근을 했었는데, '연속되고, 문자가 중복되지 않음'이라는 규칙때문에 문자열로 풀이하는 것이 맞았다.
