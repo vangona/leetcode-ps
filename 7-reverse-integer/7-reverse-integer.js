@@ -3,9 +3,9 @@
  * @return {number}
  */
 var reverse = function(x) {
-    const str = Math.abs(x).toString().split('');
-    if (str[str.length - 1] === '0') str.pop();
-    const reversed = str.reverse().join('');
+    const MAX = Math.pow(2, 31) - 1;
+    const MIN = -Math.pow(2, 31);
+    const reversed = parseInt(Math.abs(x).toString().split('').reverse().join(''));
     
     if (x < 0) {
         if (reversed * -1 < -Math.pow(2, 31)) return 0;
