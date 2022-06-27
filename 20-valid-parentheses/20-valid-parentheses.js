@@ -7,18 +7,17 @@ var isValid = function(s) {
     const parenthesis = [];
     
     for (let i = 0; i < N; i++) {
-        const parenthesisLast = parenthesis[parenthesis.length - 1]
         switch (s[i]) {
             case ')' :
-                if (parenthesisLast !== '(') return false;
+                if (parenthesis[parenthesis.length - 1] !== '(') return false;
                 parenthesis.pop();
                 break;
             case '}' :
-                if (parenthesisLast !== '{') return false;
+                if (parenthesis[parenthesis.length - 1] !== '{') return false;
                 parenthesis.pop();
                 break;
             case ']' :
-                if (parenthesisLast !== '[') return false;
+                if (parenthesis[parenthesis.length - 1] !== '[') return false;
                 parenthesis.pop();
                 break;
             default :
