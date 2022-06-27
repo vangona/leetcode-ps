@@ -17,28 +17,29 @@ var mergeTwoLists = function(list1, list2) {
     
     let answerHead;
     if (list1.val < list2.val) {
-        answerHead = new ListNode(list1.val);
+        answerHead = list1;
         list1 = list1.next;
     } else {
-        answerHead = new ListNode(list2.val);
+        answerHead = list2;
         list2 = list2.next;
     }
     
     let answerList = answerHead;
 
-    while (list1 || list2) {
-        const firstListValue = list1 ? list1.val : 101;
-        const secondListValue = list2 ? list2.val : 101;
-        if (firstListValue < secondListValue) {
+    while (list1 && list2) {
+        if (list1.val < list2.val) {
             answerList.next = list1;
             answerList = answerList.next;
-            list1 = list1 && list1.next;
+            list1 = list1.next;
         } else {
             answerList.next = list2;
             answerList = answerList.next;
-            list2 = list2 && list2.next;
+            list2 = list2.next;
         }
     }
+    
+    if (!list1) answerList.next = list2;
+    if (!list2) answerList.next = list1;
     
     return answerHead;
 };
