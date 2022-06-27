@@ -22,5 +22,5 @@ var isValid = function(s) {
         }
     }
     
-    return !Boolean(parenthesis.length);
+    return parenthesis.length ? false : true;
 };
