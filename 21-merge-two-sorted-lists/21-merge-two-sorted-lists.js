@@ -29,13 +29,13 @@ var mergeTwoLists = function(list1, list2) {
     while (list1 && list2) {
         if (list1.val < list2.val) {
             answerList.next = list1;
-            answerList = answerList.next;
             list1 = list1.next;
         } else {
             answerList.next = list2;
-            answerList = answerList.next;
             list2 = list2.next;
         }
+        
+        answerList = answerList.next;
     }
     
     if (!list1) answerList.next = list2;
