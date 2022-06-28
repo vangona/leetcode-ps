@@ -4,11 +4,14 @@
  */
 var maxSubArray = function(nums) {
     const N = nums.length;
-    const dpArr = Array.from({length: N}, (_, i) => nums[i]);
+    const dpArr = new Array(N).fill(0);
+    let max = nums[0];
+    dpArr[0] = nums[0];
     
     for (let i = 1; i < N; i++) {
-        dpArr[i] = Math.max(dpArr[i], dpArr[i] + dpArr[i - 1]);
+        dpArr[i] = Math.max(nums[i], dpArr[i - 1] + nums[i]);
+        if (dpArr[i] > max) max = dpArr[i];
     }
     
-    return Math.max(...dpArr);
+    return max;
 };
