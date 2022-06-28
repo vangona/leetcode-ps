@@ -7,8 +7,11 @@ class MinStack {
 
     push(val) {
         this.stack.push(val);
-        let min = this.minHistory[this.length - 1];
-        this.minHistory.push(min === undefined ? val : Math.min(min, val));
+        if (this.length === 0) {
+            this.minHistory.push(val);
+        } else {
+            this.minHistory.push(Math.min(val, this.minHistory[this.length - 1]));
+        }
         this.length++;
     }
 
