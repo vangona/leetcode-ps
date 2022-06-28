@@ -11,6 +11,6 @@ var climbStairs = function(n) {
         first = tmp;
     }
     
-    if (n === 1) return 1;
+    if (n === 1) return first;
     return second;
 };
