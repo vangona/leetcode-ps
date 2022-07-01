@@ -5,7 +5,6 @@
 var generateParenthesis = function(n) {
     const answer = [];
     const dfs = (depth, opened, closed, parenthesis) => {
-        if (closed > opened) return;
         if (depth === n * 2) {
             if (opened === closed) answer.push(parenthesis);
             return;
@@ -15,7 +14,7 @@ var generateParenthesis = function(n) {
             dfs(depth + 1, opened + 1, closed, parenthesis + '(');
         }
         
-        if (opened > 0) {
+        if (opened > 0 && closed < opened) {
             dfs(depth + 1, opened, closed + 1, parenthesis + ')');
         };
     }
