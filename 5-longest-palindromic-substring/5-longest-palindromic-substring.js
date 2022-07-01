@@ -7,11 +7,11 @@ var longestPalindrome = function(s) {
     let max = '';
     
     for (let i = 0; i < s.length - 1; i++) {
-        const odd = checkPalindrom(s, i, i);
-        const even = checkPalindrom(s, i, i + 1);
-        const localMax = odd.length > even.length ? odd : even;
+        const currOddMax = checkPalindrom(s, i, i);
+        const currEvenMax = checkPalindrom(s, i, i + 1);
+        const currMax = currOddMax.length > currEvenMax.length ? currOddMax : currEvenMax;
         
-        max = max.length > localMax.length ? max : localMax;
+        max = max.length > currMax.length ? max : currMax;
     }
     
     return max;
