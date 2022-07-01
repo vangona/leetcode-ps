@@ -3,37 +3,25 @@
  * @return {string}
  */
 var longestPalindrome = function(s) {
-    const N = s.length;
-    const dp = Array.from({length: N}, (_, index) => s[index]);
-    let max = 1;
+    if (s.length < 2) return s;
+    let max = '';
     
-    for (let i = 1; i < N; i++) {
-        for (let j = i - max + 1; j >= 0 ; j--) {
-            const substring = s.slice(j, i + 1);
-            if (isPalindrom(substring) && substring.length > max) {
-                // palindrom이고, max 값이라면 dp 값을 갱신
-                dp[i] = substring;    
-                max = substring.length;
-                break;
-            } else {
-                // palindrom이 아니거나 max 값보다 작다면 dp 값을 유지함.
-                dp[i] = dp[i - 1];
-            }
-        }
+    for (let i = 0; i < s.length - 1; i++) {
+        const odd = checkPalindrom(s, i, i);
+        const even = checkPalindrom(s, i, i + 1);
+        const localMax = odd.length > even.length ? odd : even;
+        
+        max = max.length > localMax.length ? max : localMax;
     }
     
-    return dp[N - 1];
+    return max;
 };
     
-function isPalindrom(string) {
-    let start = 0;
-    let end = string.length - 1;
-    
-    while (start < end) {
-        if (string[start] !== string[end]) return false;
-        start++;
-        end--;
+function checkPalindrom(s, start, end) {
+    while (start >= 0 && end <= s.length -1 && s[start] === s[end]) {
+        start--;
+        end++;
     }
     
-    return true;
+    return s.slice(start + 1, end);
 }
