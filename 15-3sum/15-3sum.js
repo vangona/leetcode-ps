@@ -14,9 +14,7 @@ var threeSum = function(nums) {
         while (j < k) {
             const sum = nums[i] + nums[j] + nums[k];
             
-            if (sum === 0) {
-                answer.push([nums[i], nums[j], nums[k]]);
-            }
+            if (sum === 0) answer.push([nums[i], nums[j], nums[k]]);
             
             if (sum < 0) {
                 do {
