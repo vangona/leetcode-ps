@@ -4,9 +4,10 @@
  */
 var threeSum = function(nums) {
     if (nums.length < 3) return [];
-    let answer = [];
     nums.sort((a, b) => a - b);
+    if (nums[0] > 0) return [];
     
+    let answer = [];
     for (let i = 0; i < nums.length - 2; i++) {
         if (i > 0 && nums[i - 1] === nums[i]) continue;
         let j = i + 1;
