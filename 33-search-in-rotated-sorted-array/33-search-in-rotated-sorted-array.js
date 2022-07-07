@@ -39,7 +39,6 @@ var search = function(nums, target) {
         } else if (target > nums[0]) {
             right = mid;
         }
-        console.log(left, right, mid, maxIdx);
         mid = Math.floor((left + right) / 2);
 
         while(left <= right) {
