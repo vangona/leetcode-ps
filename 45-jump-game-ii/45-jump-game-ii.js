@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-var jump = function(nums) {
+const jump = (nums) => {
     const N = nums.length;
     const dp = new Array(N).fill(N + 1);
     dp[0] = 0;
