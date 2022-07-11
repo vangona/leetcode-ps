@@ -8,15 +8,17 @@ const permute = (nums) => {
     
     const dfs = (depth, permutation) => {
         if (depth === nums.length) {
-            answer.push(permutation);
+            answer.push([...permutation]);
             return;
         }
         
         for (let i = 0; i < nums.length; i++) {
             if (visited[i]) continue;
             
+            permutation.push(nums[i]);
             visited[i] = true;
-            dfs(depth + 1, permutation.concat([nums[i]]));
+            dfs(depth + 1, permutation);
+            permutation.pop();
             visited[i] = false;
         }
     };
