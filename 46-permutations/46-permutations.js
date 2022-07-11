@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var permute = function(nums) {
+const permute = (nums) => {
     const visited = new Array(nums.length).fill(false);
     const answer = [];
     
