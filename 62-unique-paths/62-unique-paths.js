@@ -9,11 +9,9 @@ const uniquePaths = (m, n) => {
     // x 좌표 방문
     for (let i = 0; i < n; i++) {
         // y 좌표 방문
-        for (let j = 0; j < m; j++) {
+        for (let j = 1; j < m; j++) {
             if (j > 0 && i > 0) {
                 dp[j][i] = dp[j - 1][i] + dp[j][i - 1];            
-            } else if (j === 0) {
-                continue;
             } else if (i === 0) {
                 dp[j][i] = dp[j - 1][i];
             }
