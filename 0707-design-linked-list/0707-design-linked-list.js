@@ -1,114 +1,110 @@
-class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
+const Node = function (val) {
+  this.val = val;
+  this.next = null;
+};
+
+const MyLinkedList = function () {
+  this.head = null;
+  this.tail = null;
+  this.size = 0;
+};
+
+MyLinkedList.prototype.getNode = function (index) {
+  let currNode = this.head;
+  let currIndex = 0;
+  while (currIndex < index) {
+    currIndex++;
+    currNode = currNode.next;
   }
-}
+  return currNode;
+};
 
-class MyLinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-    this.size = 0;
-  }
+MyLinkedList.prototype.get = function (index) {
+  if (index < 0 || index >= this.size) return -1;
+  return this.getNode(index).val;
+};
 
-  getNode(index) {
-    let currNode = this.head;
-    let currIndex = 0;
-    while (currIndex < index) {
-      currIndex++;
-      currNode = currNode.next;
-    }
-    return currNode;
-  }
+MyLinkedList.prototype.initNode = function (node) {
+  this.head = node;
+  this.tail = node;
+  this.size = 1;
+};
 
-  get(index) {
-    if (index < 0 || index >= this.size) return -1;
-    return this.getNode(index).val;
-  }
+MyLinkedList.prototype.addAtHead = function (val) {
+  const newNode = new Node(val);
 
-  initNode(node) {
-    this.head = node;
-    this.tail = node;
-    this.size = 1;
-  }
-
-  addAtHead(val) {
-    const newNode = new Node(val);
-
-    if (!this.head) {
-      this.initNode(newNode);
-      return;
-    }
-
-    const prevHead = this.head;
-    this.head = newNode;
-    this.head.next = prevHead;
-    this.size++;
+  if (!this.head) {
+    this.initNode(newNode);
+    return;
   }
 
-  addAtTail(val) {
-    const newNode = new Node(val);
+  const prevHead = this.head;
+  this.head = newNode;
+  this.head.next = prevHead;
+  this.size++;
+};
 
-    if (!this.tail) {
-      this.initNode(newNode);
-      return;
-    }
+MyLinkedList.prototype.addAtTail = function (val) {
+  const newNode = new Node(val);
 
-    this.tail.next = newNode;
-    this.tail = newNode;
-    this.size++;
+  if (!this.tail) {
+    this.initNode(newNode);
+    return;
   }
 
-  addAtIndex(index, val) {
-    if (index < 0 || index > this.size) return;
+  this.tail.next = newNode;
+  this.tail = newNode;
+  this.size++;
+};
 
-    const newNode = new Node(val);
+MyLinkedList.prototype.addAtIndex = function (index, val) {
+  if (index < 0 || index > this.size) return;
 
-    if (!this.head) {
-      this.initNode(newNode);
-      return;
-    }
+  const newNode = new Node(val);
 
-    if (index === 0) {
-      this.addAtHead(val);
-      return;
-    }
-
-    if (index === this.size) {
-      this.addAtTail(val);
-      return;
-    }
-
-    const prevNode = this.getNode(index - 1);
-    const indexNode = prevNode.next;
-
-    prevNode.next = newNode;
-    newNode.next = indexNode;
-    this.size++;
+  if (!this.head) {
+    this.initNode(newNode);
+    return;
   }
 
-  deleteAtIndex(index) {
-    if (index < 0 || index >= this.size) return;
+  if (index === 0) {
+    this.addAtHead(val);
+    return;
+  }
 
-    if (index === 0) {
-      this.head = this.head.next;
-      this.size--;
-      return;
-    }
+  if (index === this.size) {
+    this.addAtTail(val);
+    return;
+  }
 
-    const prevNode = this.getNode(index - 1);
+  const prevNode = this.getNode(index - 1);
+  const indexNode = prevNode.next;
 
-    if (index === this.size - 1) {
-      this.tail = prevNode;
-      this.size--;
-      return;
-    }
+  prevNode.next = newNode;
+  newNode.next = indexNode;
+  this.size++;
+};
 
-    const indexNode = prevNode.next;
-    const nextNode = indexNode.next;
+MyLinkedList.prototype.deleteAtIndex = function (index) {
+  if (index < 0 || index >= this.size) return;
 
-    prevNode.next = nextNode;
+  if (index === 0) {
+    this.head = this.head.next;
     this.size--;
+    return;
   }
-}
+
+  const prevNode = this.getNode(index - 1);
+
+  if (index === this.size - 1) {
+    this.tail = prevNode;
+    this.size--;
+    return;
+  }
+
+  const indexNode = prevNode.next;
+  const nextNode = indexNode.next;
+
+  prevNode.next = nextNode;
+  this.size--;
+};
