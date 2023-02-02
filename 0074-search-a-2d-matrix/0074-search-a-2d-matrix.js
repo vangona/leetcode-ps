@@ -10,11 +10,6 @@ const binarySearchRecursive = (arr, target, low, high) => {
   }
 }
 
-/**
- * @param {number[][]} matrix
- * @param {number} target
- * @return {boolean}
- */
 const searchMatrix = (matrix, target) => {
   const m = matrix.length;
   const n = matrix[0].length;
