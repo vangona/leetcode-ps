@@ -1,8 +1,6 @@
 const binarySearchRecursive = (arr, target, low, high) => {  
   let mid = Math.floor((low + high) / 2);
   
-  console.log(arr, mid);
-  
   if (low > high || arr[mid] === target) return mid;
   if (arr[mid] > target) {
     if (mid === 0) return mid;
@@ -26,6 +24,5 @@ const searchMatrix = (matrix, target) => {
   const columnResult = binarySearchRecursive(matrix[rowResult], target, 0, n - 1);
   
   if (matrix[rowResult][columnResult] === target) return true;
-  console.log(rowResult, columnResult)
   return false;
 };
