@@ -29,7 +29,6 @@ const searchMatrix = (matrix, target) => {
   let columnRight = n - 1;
   let columnMid = Math.floor((columnLeft + columnRight) / 2);
 
-  
   while(columnLeft <= columnRight) {
     if (matrix[rowMid][columnMid] === target) return true;
     
@@ -41,8 +40,6 @@ const searchMatrix = (matrix, target) => {
     
     columnMid = Math.floor((columnLeft + columnRight) / 2);
   }
-  
-  console.log(rowMid, columnMid);
   
   return false;
 };
