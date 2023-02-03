@@ -6,11 +6,9 @@ const sortColors = (nums) => {
   let index = 0;
   const countArr = [0, 0, 0];
   
-  nums.forEach(num => {
-    countArr[num]++;
-  });
+  nums.forEach(num => countArr[num]++);
     
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < countArr.length; i++) {
     while(countArr[i]-- > 0) {
       nums[index] = i;
       index++;
