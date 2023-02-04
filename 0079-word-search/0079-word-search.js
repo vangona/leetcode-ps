@@ -38,6 +38,7 @@ const exist = (board, word) => {
   for(let i = 0; i < m; i++) {
     for(let j = 0; j < n; j++) {
       if (answer) return answer;
+      if (word[0] !== board[i][j]) continue;
       visited[i][j] = true;
       _backtrack(board[i][j], j, i);
       visited[i][j] = false;
