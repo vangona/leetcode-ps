@@ -17,7 +17,7 @@ const exist = (board, word) => {
   
   const _backtrack = (myWord, x, y) => {
     if (answer) return;
-    if (myWord.length > word.length) return;
+    if (myWord.length > 15 || myWord.length > word.length) return;
     if (word === myWord) {
       answer = true;
       return;
