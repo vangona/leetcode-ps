@@ -16,6 +16,7 @@ const exist = (board, word) => {
   };
   
   const _backtrack = (myWord, x, y) => {
+    if (answer) return;
     if (myWord.length > word.length) return;
     if (word === myWord) {
       answer = true;
@@ -23,11 +24,11 @@ const exist = (board, word) => {
     }
     
     for(let i = 0; i < 4; i++) {
-      if (answer) return;
       const dx = x + ways[i][0];
       const dy = y + ways[i][1];
       if (!_isValidPos(dx, dy)) continue;
       if (visited[dy][dx]) continue;
+      
       visited[dy][dx] = true;
       _backtrack(myWord + board[dy][dx], dx, dy);
       visited[dy][dx] = false;
