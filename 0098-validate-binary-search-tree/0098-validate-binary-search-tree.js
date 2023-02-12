@@ -10,8 +10,12 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-const isValidBST = (root, min = -Infinity, max = Infinity) => {
-  if (!root) return true;
-  if (root.val <= min || root.val >= max) return false;  
-  return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+const isValidBST = (root) => {
+  const solution = (node, min, max) => {
+    if (!node) return true;
+    if (node.val <= min || node.val >= max) return false;  
+    return solution(node.left, min, node.val) && solution(node.right, node.val, max);
+  }
+  
+  return solution(root, -Infinity, Infinity);
 };
