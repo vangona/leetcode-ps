@@ -10,7 +10,7 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-const isValidBST = (root, min = -Infinity, max = Infinity) => {
+const isValidBST = (root, min = -Math.pow(2, 31) - 1, max = Math.pow(2, 31)) => {
   if (!root) return true;
   if (root.val <= min || root.val >= max) return false;  
   return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
