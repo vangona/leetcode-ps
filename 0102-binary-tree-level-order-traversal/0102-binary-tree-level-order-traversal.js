@@ -1,6 +1,6 @@
 const levelOrder = (root) => {
   const result = [];
-  
+ 
   const bfs = (depth, queue) => {
     while(queue.length > 0) {
       const currNode = queue.shift();
@@ -12,11 +12,11 @@ const levelOrder = (root) => {
         result[depth] = [currNode.val];
       };
 
-      bfs(depth + 1, [currNode.left, currNode.right]);
-    }
+     bfs(depth + 1, [currNode.left, currNode.right]);
+    }    
   };
   
-  bfs(0, [root]);
-  
+  bfs(0, [root])
+    
   return result;
 };
