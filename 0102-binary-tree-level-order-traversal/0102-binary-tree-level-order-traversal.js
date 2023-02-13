@@ -1,22 +1,20 @@
 const levelOrder = (root) => {
-  const result = [];
+  if (!root) return [];
+  const result = [[root.val]];
  
-  const bfs = (depth, queue) => {
-    while(queue.length > 0) {
-      const currNode = queue.shift();
-      if (!currNode) continue;
+  const bfs = (depth, currNode) => {
+    if (!currNode) return;
+    if (!currNode.left && !currNode.right) return;
+    if (!result[depth + 1]) result[depth + 1] = [];
 
-      if (result[depth]) {
-        result[depth].push(currNode.val)
-      } else {
-        result[depth] = [currNode.val];
-      };
+    currNode.left && result[depth + 1].push(currNode.left.val);
+    currNode.right && result[depth + 1].push(currNode.right.val);
 
-     bfs(depth + 1, [currNode.left, currNode.right]);
-    }    
+    bfs(depth + 1, currNode.left);
+    bfs(depth + 1, currNode.right);
   };
   
-  bfs(0, [root])
+  bfs(0, root)
     
   return result;
 };
