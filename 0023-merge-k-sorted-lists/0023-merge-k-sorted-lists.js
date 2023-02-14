@@ -33,5 +33,13 @@ const mergeKLists = (lists) => {
   if (lists.length === 1) return lists[0];
   if (lists.length === 2) return merge(lists[0], lists[1]);
   
-  return lists.reduce((acc, curr) => merge(acc, curr), new ListNode(-10002)).next;
+  const k = lists.length;
+  const result = [];
+  
+  for (let i = 0; i < k - 1; i += 2) {
+    result.push(merge(lists[i], lists[i + 1]));
+  }
+
+  if (k % 2 === 1) result.push(lists[k - 1]);
+  return mergeKLists(result);
 };
