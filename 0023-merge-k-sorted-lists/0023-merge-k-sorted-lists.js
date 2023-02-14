@@ -10,29 +10,24 @@
  * @return {ListNode}
  */
 const mergeKLists = (lists) => {
-  const k = lists.length;
-  const resultHead = new ListNode(0, null);
-  let currNode = resultHead;
-
-  while (true) {
-    let minVal = 10001;
-    let headIndex = 0;
-    
-    for (let i = 0; i < k; i++) {
-      if (!lists[i]) continue;
-      
-      if (minVal > lists[i].val) {
-        headIndex = i;
-        minVal = lists[i].val;
+  const merge = (left, right) => {
+    const resultHead = new ListNode(0);
+    let currHead = resultHead;
+    while (left && right) {
+      if (left.val < right.val) {
+        currHead.next = left;
+        left = left.next;
+      } else {
+        currHead.next = right;
+        right = right.next;
       }
+      
+      currHead = currHead.next;
     }
-    
-    if (!lists[headIndex]) break;
-    
-    currNode.next = lists[headIndex];
-    currNode = currNode.next;
-    lists[headIndex] = lists[headIndex].next;
-  }
+
+    currHead.next = left ? left : right;
+    return resultHead.next;
+  };
   
-  return resultHead.next;
+  return lists.reduce((acc, curr) => merge(acc, curr), new ListNode(-10002)).next;
 };
