@@ -13,19 +13,8 @@ const mergeKLists = (lists) => {
   const k = lists.length;
   const resultHead = new ListNode(0, null);
   let currNode = resultHead;
-  
-  ListNode.size = (node) => {
-    let result = 0;
-    while (node) {
-      node = node.next;
-      result++;
-    }
-    return result;
-  };
-  
-  let leftNum = lists.reduce((acc, curr) => acc + ListNode.size(curr), 0);
 
-  while (leftNum) {
+  while (true) {
     let minVal = 10001;
     let headIndex = 0;
     
@@ -43,7 +32,6 @@ const mergeKLists = (lists) => {
     currNode.next = lists[headIndex];
     currNode = currNode.next;
     lists[headIndex] = lists[headIndex].next;
-    leftNum--;
   }
   
   return resultHead.next;
