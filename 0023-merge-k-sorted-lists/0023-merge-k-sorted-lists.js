@@ -34,12 +34,14 @@ const mergeKLists = (lists) => {
   if (lists.length === 2) return merge(lists[0], lists[1]);
   
   const k = lists.length;
-  const result = [];
+  let interval = 1;
   
-  for (let i = 0; i < k - 1; i += 2) {
-    result.push(merge(lists[i], lists[i + 1]));
+  while (interval < k) {
+    for (let i = 0; i < k - interval; i += interval * 2) {
+      lists[i] = merge(lists[i], lists[i + interval]);
+    }
+    interval *= 2;
   }
-
-  if (k % 2 === 1) result.push(lists[k - 1]);
-  return mergeKLists(result);
+  
+  return lists[0];
 };
