@@ -1,11 +1,41 @@
-# 23. Merge k Sorted Lists
+this.val = (val===undefined ? 0 : val)
+this.next = (next===undefined ? null : next)
+}
 ​
-## 문제 분석
-- 정렬된 여러 개의 연결 리스트가 주어질 때, 이를 하나의 정렬된 리스트로 만들라는 것이 과제였다.
-- 리스트의 최대 개수는 10,000
-- 리스트 하나의 길이는 0이상, 500 이하
-- 리스트들의 길이 총합은 10,000을 초과하지 않는다.
+const mergeKLists = (lists) => {
+const k = lists.length;
+const resultHead = new ListNode(0, null);
+let currNode = resultHead;
+ListNode.size = (node) => {
+let result = 0;
+while (node) {
+node = node.next;
+result++;
+}
+return result;
+};
+let leftNum = lists.reduce((acc, curr) => acc + ListNode.size(curr), 0);
 ​
-## 문제 풀이
-- 합병 정렬을 할 때처럼, 포인터를 배열로 만들어서 풀이해보기로 했다.
-- 단순한 풀이 방식이고 연산이 많을 것 같지만 일단 경과를 지켜보려고 한다.
+while (leftNum) {
+let minVal = 10001;
+let headIndex = 0;
+for (let i = 0; i < k; i++) {
+if (!lists[i]) continue;
+if (minVal > lists[i].val) {
+headIndex = i;
+minVal = lists[i].val;
+}
+}
+if (!lists[headIndex]) break;
+currNode.next = lists[headIndex];
+currNode = currNode.next;
+lists[headIndex] = lists[headIndex].next;
+leftNum--;
+}
+return resultHead.next;
+};
+```
+​
+- 풀이는 위와 같다.
+- 실행 시간이 하위 8%가 나왔다.
+- 완전탐색 방법이라서 그런 것 같다.
