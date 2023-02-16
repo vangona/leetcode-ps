@@ -7,7 +7,8 @@ const generate = (numRows) => {
   result[0] = [1];
   
   for (let i = 1; i < numRows; i++) {
-    for (let j = 1; j < Math.ceil((i + 1) / 2); j++) {
+    const halfNums = Math.ceil((i + 1) / 2);
+    for (let j = 1; j < halfNums; j++) {
       const pascalNum = result[i - 1][j - 1] + result[i - 1][j];
       result[i][j] = pascalNum;
       result[i][i - j] = pascalNum;
