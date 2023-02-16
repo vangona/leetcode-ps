@@ -11,13 +11,11 @@
  * @return {boolean}
  */
 const hasCycle = (head) => {
-  let result = false;
-  
-  while (head && !result) {
-    if (head.visited) result = true;
+  while (head) {
+    if (head.visited) return true;
     head.visited = true;
     head = head.next;
   }
   
-  return result;
+  return false;
 };
