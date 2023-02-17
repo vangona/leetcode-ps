@@ -12,15 +12,19 @@
  * @return {ListNode}
  */ 
 const getIntersectionNode = (headA, headB)=> {  
-  const listTraversal = (head) => {
-    while (head) {
-      if (head.visited) return head;
-      head.visited = true
-      head = head.next;
+  while (headA || headB) {
+    if (headA) {
+      if (headA.visited) return headA;
+      headA.visited = true;
+      headA = headA.next;      
     }
     
-    return null;
+    if (headB) {
+      if (headB.visited) return headB;
+      headB.visited = true;
+      headB = headB.next;
+    }    
   }
-  
-  return listTraversal(headA) || listTraversal(headB);
+    
+  return null;
 };
