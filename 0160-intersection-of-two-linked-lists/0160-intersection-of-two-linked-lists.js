@@ -11,13 +11,11 @@
  * @param {ListNode} headB
  * @return {ListNode}
  */ 
-const getIntersectionNode = (headA, headB)=> {
-  const visited = [];
-  
+const getIntersectionNode = (headA, headB)=> {  
   const listTraversal = (head) => {
     while (head) {
-      if (visited.includes(head)) return head;
-      visited.push(head);
+      if (head.visited) return head;
+      head.visited = true
       head = head.next;
     }
     
