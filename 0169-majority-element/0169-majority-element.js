@@ -3,19 +3,14 @@ const majorityElement = (nums) => {
   let candidate = nums[0];
   let count = 0;
   
-  for (let i = 0; i < n; i++) {
+  nums.forEach(num => {
     if (count === 0) {
-      candidate = nums[i];
+      candidate = num;
       count = 1;
-      continue;
-    } 
-    
-    if (nums[i] === candidate) {
-      count++;
     } else {
-      count--;
+      count += num === candidate ? 1 : -1;
     }
-  }
+  });
 
   return candidate;
 };
