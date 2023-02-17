@@ -11,19 +11,16 @@
  * @param {ListNode} headB
  * @return {ListNode}
  */ 
-const getIntersectionNode = (headA, headB)=> {  
-  while (headA || headB) {
-    if (headA) {
-      if (headA.visited) return headA;
-      headA.visited = true;
-      headA = headA.next;      
-    }
-    
-    if (headB) {
-      if (headB.visited) return headB;
-      headB.visited = true;
-      headB = headB.next;
-    }    
+const getIntersectionNode = (headA, headB)=> { 
+  const arrayA = [];
+  while (headA) {
+    arrayA.push(headA);
+    headA = headA.next;
+  }
+  
+  while (headB) {
+    if (arrayA.includes(headB)) return headB;
+    headB = headB.next;
   }
     
   return null;
