@@ -1,27 +1,14 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-const reverseList = (head) => {
+const reverseList = (head) => { 
   if (head === null) return head;
-
-  let currNode = head;
-  let next;  
-  let prev = null;
-
-  while (currNode) {
-    next = currNode.next;
-    currNode.next = prev;
-    prev = currNode;
-    currNode = next;
+  let newHead;
+  const connectRecursive = (currNode, prevNode) => {
+    if (currNode === null) return;
+    if (currNode.next === null) newHead = currNode;
+    
+    connectRecursive(currNode.next, currNode);
+    currNode.next = prevNode;
   }
+  connectRecursive(head, null);
   
-  return prev;
+  return newHead;
 };
