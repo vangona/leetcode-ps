@@ -11,18 +11,17 @@
  */
 const reverseList = (head) => {
   if (head === null) return head;
-  let newHead;
-  const connectRecursive = (currNode, prevNode) => {
-    if (currNode.next === null) {
-      newHead = currNode;
-      currNode.next = prevNode;
-      return;
-    }
-    
-    connectRecursive(currNode.next, currNode);
-    currNode.next = prevNode;
+  
+  let newHead;  
+  let prev = null;
+  let currNode = head;
+  while (currNode) {
+    const next = currNode.next;
+    if (next === null) newHead = currNode;
+    currNode.next = prev;
+    prev = currNode;
+    currNode = next;
   }
-  connectRecursive(head, null);
   
   return newHead;
 };
