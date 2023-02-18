@@ -1,3 +1,20 @@
+const connectRecursive = (currNode, prevNode) => {
+if (currNode.next === null) {
+newHead = currNode;
+currNode.next = prevNode;
+return;
+}
+connectRecursive(currNode.next, currNode);
+currNode.next = prevNode;
+}
+connectRecursive(head, null);
+return newHead;
+};
+```
+​
+- 재귀적으로 풀이했다.
+​
+## 순회 풀이
 ```js
 /**
 * Definition for singly-linked list.
@@ -12,16 +29,17 @@
 */
 const reverseList = (head) => {
 if (head === null) return head;
-let newHead;
-let prev = null;
+​
 let currNode = head;
+let next;
+let prev = null;
+​
 while (currNode) {
-const next = currNode.next;
-if (next === null) newHead = currNode;
+next = currNode.next;
 currNode.next = prev;
 prev = currNode;
 currNode = next;
 }
-return newHead;
+return prev;
 };
 ```
